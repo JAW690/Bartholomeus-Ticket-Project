@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/my_tickets.css') }}">
+  <title>My Tickets</title>
+</head>
+
+<body>
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="user-dropdown">
+      <span class="username">{{ current_user.name }}</span>
+      <div class="dropdown-content">
+        <a href="/my_tickets">My Tickets</a>
+        <a href="/logout">Logout</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="my-tickets-container">
+    <!-- Left Panel -->
+    <div class="left-panel">
+      <ul class="menu">
+        <li><a href="/dashboard">Dashboard</a></li>
+        <li><a href="/ticket">New ticket</a></li>
+        <li><a href="/my_tickets">My Tickets</a></li>
+        {% if current_user.is_admin %}
+        <li><a href="/admin">Admin panel</a></li>
+        {% endif %}
+      </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <div class="tickets-list">
+        <h2 class="list-title">My Tickets</h2>
+        <div id="ticket-wrapper">
+          {% for ticket in tickets %}
+          <div class="ticket">
+            <div class="ticket_top_row">
+              <h2><strong>{{ ticket.title }}</strong></h2>
+
+              <div>
+                <p><strong>Submitted By: </strong></p>
+                <p>{{ ticket.submitted_by.name }}</p>
+              </div>
+
+              <div>
+                <p><strong>Department: </strong></p>
+                <p>{{ ticket.department }}</p>
+              </div>
+            </div>
+
+            <div class="ticket_bottom_row">
+              <div>
+                <p><strong>Description: </strong></p>
+                <p>{{ ticket.description }}</p>
+              </div>
+
+              <div>
+                <p><strong>Created at:</strong></p>
+                <p>{{ ticket.created_at.strftime('%Y.%m.%d') }}</p>
+              </div>
+
+              <div>
+                <button class="delete_button" onclick="DeleteTicket({{ ticket.id }})"><strong>Finish</strong></button>
+              </div>
+            </div>
+          </div>
+          {% else %}
+          <p>No tickets found.</p>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="info-wrapper">
+        <h2 class="card-title">Info</h2>
+      </div>
+    </div>
+  </div>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+      <div class="flash-message {{ category }}">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+<script src="{{ url_for('static', filename='js/my_tickets.js') }}"></script>
+
+</body>
+</html>

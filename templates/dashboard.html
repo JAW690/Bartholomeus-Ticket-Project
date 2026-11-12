@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+  <title>Dashboard</title>
+</head>
+
+<body>
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="user-dropdown">
+      <span class="username">{{ current_user.name }}</span>
+      <div class="dropdown-content">
+        <a href="/my_tickets">My Tickets</a>
+        <a href="/logout">Logout</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="dashboard-container">
+    <!-- Left Panel -->
+    <div class="left-panel">
+      <ul class="menu">
+        <li><a href="/dashboard">Dashboard</a></li>
+        <li><a href="/ticket">New ticket</a></li>
+        <li><a href="/my_tickets">My Tickets</a></li>
+        {% if current_user.is_admin %}
+        <li><a href="/admin">Admin panel</a></li>
+        {% endif %}
+      </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <div class="tickets-list">
+        <h2 class="list-title">Tickets</h2>
+        <div id="ticket-wrapper">
+          {% for ticket in tickets %}
+          <div class="ticket">
+            <div class="ticket_top_row">
+              <h2><strong>{{ ticket.title }}</strong></h2>
+
+              <div>
+                <p><strong>Submitted By: </strong></p>
+                <p>{{ ticket.submitted_by.name }}</p>
+              </div>
+
+              <div>
+                <p><strong>Department: </strong></p>
+                <p>{{ ticket.department }}</p>
+              </div>
+            </div>
+
+            <div class="ticket_bottom_row">
+              <div>
+                <p><strong>Description: </strong></p>
+                <p>{{ ticket.description }}</p>
+              </div>
+
+              <div>
+                <p><strong>Created at:</strong></p>
+                <p>{{ ticket.created_at.strftime('%Y.%m.%d') }}</p>
+              </div>
+
+              <div>
+                <button class="claim_button" onclick="ClaimTicket({{ ticket.id }})"><strong>Claim</strong></button>
+              </div>
+            </div>
+          </div>
+          {% else %}
+          <p>No tickets found.</p>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="info-wrapper">
+        <div id="statistics">
+          <h2 class="card-title">Stats</h2>
+
+          <div id="main_stats">
+            <h2>Ticket Count (All Tickets)</h2>
+            <p class="between">________</p>
+            <div class="ticket_numbers">
+              <h2>All: <span id="total_tickets">{{ total_tickets_count }}</span></h2>
+              <h2>Mine: <span id="user_tickets">{{ user_tickets_count }}</span></h2>
+            </div>
+          </div>
+
+          <div id="specific_stats">
+            <div class="specific_stat">
+              <h3>Claimed Tickets</h3>
+              <p class="between">________</p>
+              <div class="ticket_numbers">
+                <h3>All: <span id="total_claimed_tickets">{{ total_claimed_tickets }}</span></h3>
+                <h3>Mine: <span id="user_claimed_tickets">{{ user_claimed_tickets_count }}</span></h3>
+              </div>
+            </div>
+
+            <div class="specific_stat">
+              <h3>Unclaimed Tickets</h3>
+              <p class="between">________</p>
+              <div class="ticket_numbers">
+                <h3>All: <span id="total_unclaimed_tickets">{{ total_unclaimed_tickets }}</span></h3>
+                <h3>Mine: <span id="user_unclaimed_tickets">{{ user_unclaimed_tickets }}</span></h3>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Flash messages display section -->
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+      <div class="flash-message {{ category }}">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+  <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+
+</html>

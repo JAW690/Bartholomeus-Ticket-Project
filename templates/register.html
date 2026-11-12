@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/register.css') }}">
+  <title>Registration</title>
+</head>
+<script>
+  window.onload = function() {
+    // Assuming your flash messages have a class 'flash-message'
+    var flashMessages = document.querySelectorAll('.flash-message');
+    if(flashMessages.length) {
+      history.replaceState(null, null, window.location.href.split('?')[0]);
+    }
+    // Then fade out or remove the flash messages as before
+    setTimeout(function() {
+      flashMessages.forEach(function(msg) {
+        msg.style.opacity = '0';
+        setTimeout(function() { msg.style.display = 'none'; }, 500);
+      });
+    }, 3000); // adjust timing as needed
+  };
+</script>
+<body>
+  <div class="main-registration">
+    <div class="card-registration">
+      <h1>REGISTER</h1>
+      <!-- Start of form element -->
+      <form action="/register" method="POST">
+        <div class="textfield">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" maxlength="100" placeholder="Enter your name" required>
+        </div>
+        <div class="textfield">
+          <label for="surname">Surname</label>
+          <input type="text" id="surname" name="surname" maxlength="100" placeholder="Enter your surname" required>
+        </div>
+        <div class="textfield">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" maxlength="120" placeholder="Enter your email" required>
+        </div>
+        <div class="textfield">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" placeholder="Create a password" required minlength="8" required>
+        </div>
+        <div class="textfield">
+          <label for="invite_code">Invite code</label>
+          <input type="text" id="invite_code" name="invite_code" placeholder="Invite code" required>
+        </div>
+        <button type="submit" class="btn-register">Register</button>
+      </form>
+
+      <a id="redirect" href="/login">Have an account?</a>
+
+    </div>
+  </div>
+<!-- Flash messages display section -->
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+        <div class="flash-message {{ category }}">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+</body>
+</html>

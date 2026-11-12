@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+  <title>Welcome</title>
+</head>
+<body class="index-body">
+  <div class="index-card">
+    <h1 class="index-title">Welcome</h1>
+    {% if current_user.is_authenticated %}
+      <!-- Show only Dashboard button if user is logged in -->
+      <button onclick="location.href='/dashboard'" class="index-btn">Dashboard</button>
+    {% else %}
+      <!-- Show Register and Login buttons if user is not logged in -->
+      <button onclick="location.href='/register'" class="index-btn">Register</button>
+      <button onclick="location.href='/login'" class="index-btn">Login</button>
+    {% endif %}
+  </div>
+</body>
+</html>

@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
+
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: 'Noto Sans', sans-serif;
+  background: #201b2c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body * {
+  box-sizing: border-box;
+}
+
+.main-registration {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-registration {
+  max-width: 500px; /* You can set a max-width to prevent it from getting too wide on larger screens */
+  padding: 30px 35px;
+  background: #2f2841;
+  border-radius: 20px;
+  box-shadow: 0px 10px 40px #00000056;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-registration h1 {
+  color: #00ff88;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.textfield {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.textfield label {
+  color: #f0ffffde;
+  margin-bottom: 5px;
+}
+
+.textfield input {
+  width: 100%;
+  padding: 15px;
+  border-radius: 10px;
+  background: #514869;
+  color: #f0ffffde;
+  border: none;
+  outline: none;
+  box-shadow: 0px 10px 40px #00000056;
+}
+
+.btn-register {
+  width: 100%;
+  padding: 16px 0;
+  margin-top: 25px;
+  background: #00ff88;
+  color: #2b134b;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: 3px;
+  box-shadow: 0px 10px 40px -12px #00ff8052;
+}
+
+.btn-register:hover {
+  background-color: #00e676;
+}
+
+#redirect {
+  color: white;
+  justify-content: center;
+  padding-top: 10px;
+}
+
+#redirect:hover {
+  text-shadow: 0 0 2px white;
+}
+
+@media only screen and (max-width: 950px){
+  .card-registration {
+    width: 85%;
+  }
+}
+
+@media only screen and (max-width: 600px){
+  .card-registration {
+    width: 90%;
+  }
+}
+
+.flash-message {
+  position: fixed;
+  bottom: 20px; /* Position at the bottom */
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  opacity: 1; /* Start fully visible */
+  transition: opacity 0.5s ease-out; /* Smooth transition for fading out */
+  z-index: 1000; /* Ensure it's above other content */
+}
+.flash-message.success { background-color: #28a745; } /* Green */
+.flash-message.warning { background-color: #ffc107; } /* Yellow */
+.flash-message.danger { background-color: #dc3545; } /* Red */
+
+/* Animation keyframes */
+@keyframes slide-up {
+  to {
+    bottom: 20px; /* End at 20px from the bottom */
+  }
+}

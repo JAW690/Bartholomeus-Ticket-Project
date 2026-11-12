@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+  <title>Login</title>
+</head>
+<script>
+  window.onload = function() {
+    // Assuming your flash messages have a class 'flash-message'
+    var flashMessages = document.querySelectorAll('.flash-message');
+    if(flashMessages.length) {
+      history.replaceState(null, null, window.location.href.split('?')[0]);
+    }
+    // Then fade out or remove the flash messages as before
+    setTimeout(function() {
+      flashMessages.forEach(function(msg) {
+        msg.style.opacity = '0';
+        setTimeout(function() { msg.style.display = 'none'; }, 500);
+      });
+    }, 3000); // adjust timing as needed
+  };
+</script>
+<body>
+  <div class="main-login">
+    <div class="card-login">
+      <h1>LOGIN</h1>
+      <!-- Start of form element -->
+      <form action="/login" method="POST">
+        <div class="textfield">
+          <label>Email</label>
+          <input type="email" name="email" placeholder="Email" required>
+        </div>
+        <div class="textfield">
+          <label>Password</label>
+          <input type="password" name="password" placeholder="Password" required>
+        </div>
+        <button type="submit" class="btn-login">Login</button>
+      </form>
+      <a id="redirect" href="/register">Don't have an account?</a>
+
+
+      <!-- End of form element -->
+    </div>
+  </div>
+<!-- Flash messages display section -->
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+        <div class="flash-message {{ category }}">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+</body>
+</html>

@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
+
+.index-body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Noto Sans', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #201b2c;
+}
+
+.index-card {
+  padding: 40px 50px;
+  background-color: #2f2841;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px #00000056;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.index-title {
+  color: #00ff88;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+.index-btn {
+  width: 100%; /* Maintains full width relative to its container */
+  min-width: 200px; /* Ensures buttons are at least 200px wide */
+  padding: 16px 0; /* Keeps vertical padding, adjust if needed */
+  margin: 15px 0; /* Increased margin for more space between buttons */
+  background-color: #00ff88;
+  color: #2b134b;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 2px;
+  transition: background-color 0.3s ease;
+  display: block; /* Ensures the buttons are block elements */
+  text-align: center; /* Centers the text in the button */
+}
+
+.index-btn:hover {
+  background-color: #00e676;
+}
+
+
+/* Adjustments for smaller screens */
+@media only screen and (max-width: 600px) {
+  .index-card {
+    width: 90%;
+    padding: 30px 25px;
+  }
+}

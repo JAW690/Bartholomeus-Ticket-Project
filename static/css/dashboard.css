@@ -1,0 +1,313 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Noto Sans', sans-serif;
+  background: #201b2c;
+  color: #f0ffffde;
+}
+
+.top-bar {
+  background-color: #2f2841;
+  color: #fff;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}
+
+.user-dropdown {
+  position: relative;
+  cursor: pointer;
+  display: inline-block; /* Ensure the container can size according to its content */
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0; /* Align the right edge of the dropdown with the right edge of its parent */
+  background-color: #514869;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #3e3456;
+}
+
+.user-dropdown:hover .dropdown-content,
+.user-dropdown:focus-within .dropdown-content {
+  display: block;
+}
+
+/* Optional: Adjust the spacing and alignment of the username to better fit your layout */
+.username {
+  margin-right: 10px; /* Adjust as needed for your design */
+  font-weight: bold;
+}
+
+.logout-link {
+  color: #00ff88;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.dashboard-container {
+  display: flex;
+  height: calc(100vh - 40px); /* Adjust based on top bar height */
+}
+
+.left-panel {
+  background-color: #514869;
+  padding: 20px;
+  width: 200px; /* Adjust as needed */
+}
+
+.left-panel .menu {
+  list-style: none;
+  padding: 0;
+}
+
+.left-panel .menu li a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.left-panel .menu li a:hover {
+  background-color: #3e3456;
+}
+
+.main-content {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  flex-grow: 1;
+  padding: 20px;
+}
+
+.tickets-list {
+  display: flex;
+  flex-direction: column;
+
+  height: 80%;
+  width: 45%;
+
+  border: 1px solid #ccc;
+  border-radius: 5px;
+
+  gap: 10px;
+}
+
+#ticket-wrapper {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  height: 80%;
+  align-items: center;
+
+  gap: 10px;
+}
+
+.list-title {
+  margin: 10px;
+  padding: 10px;
+  
+  align-self: start;
+  text-align: center;
+
+  border: 1px solid #ccc;
+  border-radius: 5px;
+
+  background-color: #514869;
+}
+
+.ticket {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+
+  background-color: #514869;
+
+  align-self: center;
+  width: 80%;
+
+  padding: 10px;
+}
+
+.ticket_top_row, .ticket_bottom_row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ticket_top_row h2 {
+  margin: 10px 0;
+}
+
+.ticket_top_row div p, .ticket_bottom_row div p {
+  margin: 5px 0;
+}
+
+.ticket_desc p strong, .ticket_time p strong {
+  margin-right: 5px
+}
+
+.claim_button {
+  height: 40px;
+  width: 80px;
+
+  color: #514869;
+  font-size: large;
+
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.claim_button:hover {
+  cursor: pointer;
+  background-color: #ccc;
+}
+
+/* Information */
+
+.info-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  height: 80%;
+  width: 45%;
+
+  gap: 40px;
+}
+
+.card-title {
+  margin: 0;
+  padding: 10px;
+  
+  align-self: start;
+  text-align: center;
+
+  border: 1px solid #ccc;
+  border-radius: 5px;
+
+  background-color: #514869;
+
+}
+
+#statistics {
+  display: flex;
+  flex-direction: column;
+
+  height: 50%;
+  padding: 10px;
+
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.between {
+  margin: 0;
+}
+
+#main_stats {
+  align-self: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  height: 40%;
+  margin-top: 20px;
+}
+
+#main_stats h2 {
+  margin: 0;
+}
+
+#specific_stats {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+  height: 40%;
+}
+
+.specific_stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.specific_stat h3 {
+  margin: 0;
+}
+
+.ticket_numbers {
+  display: flex;
+  flex-direction: row;
+
+  width: 100%;
+  justify-content: space-around;
+}
+
+.ticket_numbers h2 span, .ticket_numbers h3 span {
+  font-style: italic;
+  color: grey;
+}
+
+#profile {
+  display: flex;
+  flex-direction: column;
+
+  height: 50%;
+  padding: 10px;
+
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Overig */
+
+/* Add or adjust styles for flash messages as previously defined */
+.flash-message {
+  /* Flash message styles */
+}
+
+/* Include additional responsive adjustments as needed */
+.flash-message {
+  position: fixed;
+  bottom: 20px; /* Position at the bottom */
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  opacity: 1; /* Start fully visible */
+  transition: opacity 0.5s ease-out; /* Smooth transition for fading out */
+  z-index: 1000; /* Ensure it's above other content */
+}
+.flash-message.success { background-color: #28a745; } /* Green */
+.flash-message.warning { background-color: #ffc107; } /* Yellow */
+.flash-message.danger { background-color: #dc3545; } /* Red */
+
+/* Animation keyframes */
+@keyframes slide-up {
+  to {
+    bottom: 20px; /* End at 20px from the bottom */
+  }
+}

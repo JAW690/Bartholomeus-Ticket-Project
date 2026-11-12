@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+  <title>Admin - Invite codes</title>
+</head>
+<body>
+<main>
+<h1>Invite codes</h1>
+<p><a href="{{ url_for('dashboard') }}">Back to dashboard</a></p>
+<form action="{{ url_for('generate_invites') }}" method="POST">
+    <div class="textfield">
+        <label for="quantity">Number of codes (1-100)</label>
+        <input type="number" id="quantity" name="quantity" min="1" max="100" value="1" required>
+        <button type="submit" class="btn-generate">Generate Invites</button>
+    </div>
+</form>
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% for category, message in messages %}
+    <p class="flash-message {{ category }}">{{ message }}</p>
+  {% endfor %}
+{% endwith %}
+{% set generated_codes = session.pop('generated_codes', []) %}
+{% if generated_codes %}
+    <h3>Generated Invite Codes:</h3>
+    <ul>
+    {% for code in generated_codes %}
+        <li>{{ code }}</li>
+    {% endfor %}
+    </ul>
+{% endif %}
+</main>
+</body>
+</html>
